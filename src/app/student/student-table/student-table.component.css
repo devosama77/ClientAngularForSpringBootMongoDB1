@@ -1,0 +1,14 @@
+.main-section{
+    background-color: white;
+    height: 625px;
+    max-height: 625px;
+}
+  .div-tab{
+    background-color: lightgray;
+    height: 525px;
+    max-height: 555px;
+    width: 1530px;
+    overflow: scroll;
+    margin-right: 5px;
+    margin-left: 5px;
+}

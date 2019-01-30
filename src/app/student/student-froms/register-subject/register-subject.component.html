@@ -1,0 +1,122 @@
+<section class="section-class">
+  <form fxLayout="column" [formGroup]="courseGroup" (ngSubmit)="onSubmit()"
+  fxLayoutAlign="start center">
+    <mat-card class="main-card-class" fxFlex="95%">
+      <mat-card-header class="card-header" fxLayout fxLayoutAlign="center">
+        <div mat-card-avatar class="subject-header-image"></div>
+        <mat-card-title>تسجيل مادة جديدة</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxFlexAlign="center">
+        <div class="div-table-container mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                 [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" 
+                (change)="$event ? onToggle(row) : null"
+                  [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.position}} 
+          
+              </td>
+            </ng-container>
+
+            <!--  subject Column -->
+            <ng-container matColumnDef="subject" stickyEnd>
+              <th mat-header-cell *matHeaderCellDef> اسم المادة </th>
+              <td mat-cell *matCellDef="let element"> {{element.subject.courseName}} </td>
+            </ng-container>
+
+            <!-- teacher Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef> اسم المدرس </th>
+              <td mat-cell *matCellDef="let element"> {{element.subject.teacherName}} </td>
+            </ng-container>
+
+            <!-- register Column -->
+            <ng-container matColumnDef="dateRegister">
+              <th mat-header-cell *matHeaderCellDef> تاريخ تسجيل المادة </th>
+              <td mat-cell *matCellDef="let element"> {{element.subjectDetails.registerDate}} </td>
+            </ng-container>
+            <!-- start date Column -->
+            <ng-container matColumnDef="dateStart">
+              <th mat-header-cell *matHeaderCellDef> تاريخ بداية الدوره</th>
+              <td mat-cell *matCellDef="let element"> {{element.subjectDetails.beginDate}} </td>
+            </ng-container>
+            <!-- end date Column -->
+            <ng-container matColumnDef="dateEnd">
+              <th mat-header-cell *matHeaderCellDef> تاريخ نهاية الدروه </th>
+              <td mat-cell *matCellDef="let element"> {{element.subjectDetails.endDate}} </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns ; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+            </tr>
+          </table>
+        </div>
+        <div class="div-mat-chip">
+          <mat-chip-list>
+            <mat-chip *ngFor="let selected of selectedSubjects" selected>
+              {{selected.subject}}</mat-chip>
+          </mat-chip-list>
+         
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-divider></mat-divider>
+
+
+    <mat-card class="card-class" fxFlex="90%">
+      <mat-card-header class="card-header" fxLayout fxLayoutAlign="center">
+        <div mat-card-avatar class="money-header-image"></div>
+        <mat-card-title>اضافة رسوم دراسية للمواد المسجله</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content fxLayout="column" fxFlexAlign="center center">
+
+        <mat-list fxLayout fxLayoutAlign="end end">
+            <mat-list-item class="list-item">
+                <mat-form-field>
+                  <input matInput placeholder="المبلغ المدفوع" formControlName="pay"
+                  type="number">
+                  <span matPrefix>$&nbsp;</span>
+                  <span matSuffix>.00</span>
+                </mat-form-field>
+              </mat-list-item>
+          <mat-list-item class="list-item">
+            <mat-form-field>
+              <input matInput placeholder="الرسوم المطلوبة" formControlName="fees"
+              type="number">
+              <span matPrefix>$&nbsp;</span>
+              <span matSuffix>.00</span>
+            </mat-form-field>
+          </mat-list-item>
+          </mat-list>
+      </mat-card-content>
+      <mat-card-actions style="padding:40px">
+        <button color="primary" class="actions-button" type="submit"
+         mat-button mat-raised-button>
+          <mat-icon>save</mat-icon>&nbsp;save
+        </button>
+        <button mat-button mat-raised-button color="accent" class="actions-button">
+          <mat-icon>arrow_back</mat-icon>&nbsp;back
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</section>

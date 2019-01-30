@@ -1,0 +1,122 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="details" stickyEnd>
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <div>
+
+        <button mat-icon-button [matMenuTriggerFor]="edit_menu">
+          <mat-icon>border_color</mat-icon>
+        </button>
+        <mat-menu #edit_menu="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="updateMenu">
+            <mat-icon>update</mat-icon>
+            <span> تعديل</span>
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="deleteMenu">
+            <mat-icon>delete</mat-icon>
+            <span>حذف</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item [matMenuTriggerFor]="addMenu">
+            <mat-icon>add</mat-icon>
+            <span>اضافة </span>
+          </button>
+        </mat-menu>
+        <!-- add menu -->
+        <mat-menu #addMenu="matMenu">
+          <button mat-menu-item>دورة</button>
+          <button mat-menu-item>دفعة</button>
+          <button mat-menu-item>رسوم</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>تسجيل حضور</button>
+        </mat-menu>
+        <!-- update menu  -->
+        <mat-menu #updateMenu="matMenu">
+          <button mat-menu-item (click)="showFormsRegisterSubject()">دورة</button>
+          <button mat-menu-item>الرسوم</button>
+          <button mat-menu-item>الدفعات</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>تسجيل حضور</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>جميع بيانات الطالب</button>
+        </mat-menu>
+        <!-- delete menu -->
+        <mat-menu #deleteMenu="matMenu">
+          <button mat-menu-item>الدفعات</button>
+          <button mat-menu-item>الرسوم</button>
+          <button mat-menu-item>الدورات</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>جميع بيانات الطالب</button>
+        </mat-menu>
+        
+
+        <!-- show all data -->
+        <button mat-icon-button [matMenuTriggerFor]="showMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #showMenu="matMenu">
+          <button (click)="onClickCourses(element)" mat-menu-item>
+            <mat-icon>class</mat-icon>
+            <span>الدورات</span>
+          </button>
+          <button mat-menu-item (click)="onClickFincancial(element)">
+            <mat-icon>attach_money</mat-icon>
+            <span>الوضع المالي</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button (click)="onClickAllDetails(element)" mat-menu-item>
+            <mat-icon>details</mat-icon>
+            <span>اظهار كافة التفاصيل</span>
+          </button>
+        </mat-menu>
+      </div>
+    </td>
+  </ng-container>
+
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> رقم </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <!-- course Column -->
+  <ng-container matColumnDef="name" sticky>
+    <th mat-header-cell *matHeaderCellDef> اسم الطالب</th>
+    <td mat-cell *matCellDef="let element">
+      {{element.firstName}} 
+      {{element.middleName}}
+      {{element.lastName}} 
+    </td>
+  </ng-container>
+
+  <!-- notice Column -->
+  <ng-container matColumnDef="fatherJob">
+    <th mat-header-cell *matHeaderCellDef> وظيفة الاب </th>
+    <td mat-cell *matCellDef="let element"> {{element.fatherJob}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="birthday">
+    <th mat-header-cell *matHeaderCellDef> تاريخ الميلاد </th>
+    <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>
+  </ng-container> 
+
+  <ng-container matColumnDef="phone1">
+    <th mat-header-cell *matHeaderCellDef>(1) رقم الجوال </th>
+    <td mat-cell *matCellDef="let element"> {{element.contact.phone1}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone2">
+    <th mat-header-cell *matHeaderCellDef>(2) رقم الجوال </th>
+    <td mat-cell *matCellDef="let element"> {{element.contact.phone2}} </td>
+  </ng-container>
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef> العنوان </th>
+    <td mat-cell *matCellDef="let element"> {{element.contact.city}} / {{element.contact.street}}
+    </td>
+  </ng-container> -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.position}"
+    (click)="highlight(row)"></tr>
+</table>

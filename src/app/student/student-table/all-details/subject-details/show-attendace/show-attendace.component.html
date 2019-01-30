@@ -1,0 +1,40 @@
+<button mat-button (click)="onBack()" color="primary">
+    العودة الى بيانات الطالب  </button>
+<mat-card class="card-attendance">
+    <mat-card-header fxLayout="row" fxLayoutAlign="center center">
+      <!-- <div mat-card-avatar class="attendance-header-image"></div>  -->
+      <mat-card-title>    
+        <form [formGroup]="yearsMonthsGroup">  
+       <mat-form-field>
+         <mat-select placeholder="Choose a Year"  formControlName="yearControl">
+           <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+         </mat-select>
+       </mat-form-field>
+         | <mat-form-field>
+          <mat-select placeholder="Choose a Month" formControlName="monthControl">
+            <mat-option *ngFor="let month of monthsName" [value]="month.number">{{month.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>   
+        حضور الطالب لمادة | 
+      </mat-card-title>
+
+      <mat-card-subtitle>عدد ايام الحضور | عدد ايام الغياب</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        
+        <table mat-table [dataSource]="data" class="mat-elevation-z8">
+          <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+            <th mat-header-cell *matHeaderCellDef> {{dHeader[column]}} </th>
+            <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+        </table>
+        
+  
+    </mat-card-content>
+
+  </mat-card>
+  

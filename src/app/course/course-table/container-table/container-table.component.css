@@ -1,0 +1,20 @@
+table{
+    width :100%;
+}
+th.mat-column-more,td.mat-column-more{
+    width: 60px;
+    background-color:beige;
+}
+
+/* th.mat-column-subject, td.mat-column-subject {
+  padding-left: 8px;
+  
+} */
+  .mat-cell,.mat-header-cell {
+    text-align: center;
+   direction: rtl;
+   padding: 3px;
+   }
+   .highlight{
+    background: lightblue; /* green */
+  }

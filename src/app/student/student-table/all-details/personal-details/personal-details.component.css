@@ -1,0 +1,23 @@
+.mat-expansion-panel-header
+{
+  background-color: lightblue;
+}
+
+.details-card {
+    max-width: 60%;
+    width: 60%;
+  }
+  .contact-card {
+    width: 60%;
+    max-width: 60%;
+  }
+  .student-title{
+     font-size: 18px;
+     font-weight: bold;
+     direction: rtl;
+     text-align: end;
+  }
+  .text-arabic{
+    direction: rtl;
+    text-align: end;
+  }

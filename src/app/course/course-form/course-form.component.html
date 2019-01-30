@@ -1,0 +1,159 @@
+<section class="section-class">
+  <form [formGroup]="courseGroup" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="start center">
+    <mat-card class="main-card-class" fxFlex="95%">
+      <mat-card-header class="card-header" fxLayout fxLayoutAlign="center">
+        <div mat-card-avatar class="subject-header-image"></div>
+        <mat-card-title>اضافة دورة جديد
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content fxLayout="column" fxFlexAlign="center">
+
+        <mat-list fxLayout fxLayoutAlign="end end">
+
+          <!-- Level -->
+          <mat-list-item class="list-item">
+            <mat-form-field>
+              <mat-select placeholder="المستوى الدراسي" formControlName="level">
+                <mat-option value="option">-اختار المستوى الدراسي-</mat-option>
+                <mat-option *ngFor="let level of levels" value="{{level.n}}">{{level.level}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="getLevel.invalid">{{getErrorLevel()}}</mat-error>
+            </mat-form-field>
+          </mat-list-item>
+
+          <!-- Phase -->
+          <mat-list-item class="list-item">
+            <mat-form-field>
+              <mat-select placeholder="المرحة التلعيمه" formControlName="phase">
+                <mat-option> - اختار المرحلة التلعيميه -</mat-option>
+                <mat-option value="1">الابتدائية</mat-option>
+                <mat-option value="2">الاعدادية</mat-option>
+                <mat-option value="3">الثانوية</mat-option>
+              </mat-select>
+              <mat-error *ngIf="getPhase.invalid">{{getErrorPhase()}}</mat-error>
+            </mat-form-field>
+          </mat-list-item>
+
+
+          <!-- Teacher name -->
+          <mat-list-item class="list-item">
+            <mat-form-field>
+              <input matInput placeholder=" اسم المدرس" formControlName="teacher" maxlength="40">
+              <mat-error *ngIf="getTeacher.invalid">{{getErrorTeacher()}}</mat-error>
+            </mat-form-field>
+          </mat-list-item>
+
+          <!-- subject -->
+          <mat-list-item class="list-item">
+            <mat-form-field>
+              <input type="text" placeholder="اضف اسم المادة" maxlength="40" matInput formControlName="subjectName"
+                [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="getSubjectName.invalid">{{getErrorSubject()}}</mat-error>
+            </mat-form-field>
+          </mat-list-item>
+
+        </mat-list>
+
+        <!-- Second row list -->
+        <!-- start date -->
+        <mat-list fxLayout fxLayoutAlign="end end">
+
+          <!-- Notice -->
+          <mat-list-item  class="list-item">
+            <mat-form-field>
+              <textarea matInput placeholder=" اضف ملاحظة" maxlength="40"
+               formControlName="notice"></textarea>
+              
+            </mat-form-field>
+          </mat-list-item>
+          <!-- End date -->
+          <mat-list-item class="list-item">
+            <mat-form-field>
+              <input matInput [min]="minDate" [max]="maxDate" formControlName="endCourse" [matDatepicker]="picker1"
+                placeholder="ادخل تاريخ نهاية الدورة">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+              <mat-error *ngIf="getEndCourse.invalid">{{getErrorEndCourse()}}</mat-error>
+            </mat-form-field>
+          </mat-list-item>
+          <!-- start date -->
+          <mat-list-item class="list-item">
+            <mat-form-field>
+              <input matInput [min]="minDate" [max]="maxDate" formControlName="startCourse" [matDatepicker]="picker"
+                placeholder="ادخل تاريخ بداية الدورة">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+              <mat-error *ngIf="getStartCourse.invalid">{{getErrorStartCourse()}}</mat-error>
+            </mat-form-field>
+          </mat-list-item>
+
+        </mat-list>
+
+        <mat-list fxLayout fxLayoutAlign="center center">
+          <mat-list-item class="list-item">
+            <h4>:أيام الدوام</h4>
+          </mat-list-item>
+        </mat-list>
+
+        <!-- Days -->
+        <div *ngFor="let day of days">
+          <mat-list fxLayout fxLayoutAlign="end end">
+            <!-- End time -->
+            <mat-list-item class="list-item-time" *ngIf="day.showDate">
+              <mat-form-field class="input-time">
+                <input type="time" matInput [formControlName]="day.endH" placeholder="الساعة" name="end">
+                <mat-icon matSuffix>access_time</mat-icon>
+              </mat-form-field>
+
+              <!-- <mat-form-field class="input-time">
+                <input type="number" matInput [formControlName]="day.endM" placeholder="الدقيقة" name="end">
+                <mat-icon matSuffix>access_time</mat-icon>
+              </mat-form-field> -->
+              : نهاية الدوام
+            </mat-list-item>
+
+            <!-- start time -->
+
+            <mat-list-item class="list-item-time" *ngIf="day.showDate">
+              <mat-form-field class="input-time">
+                <input type="time" 
+                matInput [formControlName]="day.startH" placeholder="الساعة" name="start">
+                <mat-icon matSuffix>access_time</mat-icon>
+                   
+              </mat-form-field>
+              <!-- <mat-form-field class="input-time">
+                <input type="number" min="0" max="60" matInput [formControlName]="day.startM" placeholder="الدقيقة" name="start">
+                <mat-icon matSuffix>access_time</mat-icon>
+              </mat-form-field> -->
+              : بداية الدوام
+            </mat-list-item>
+
+            <mat-list-item class="list-item-days">
+              <mat-checkbox [labelPosition]="'before'" checked [formControlName]="day.id">{{day.name}}
+
+              </mat-checkbox>
+            </mat-list-item>
+          </mat-list>
+          <mat-divider></mat-divider>
+        </div>
+
+
+      </mat-card-content>
+      <mat-card-actions style="padding:40px">
+        <button color="primary" class="actions-button" type="submit" mat-button mat-raised-button>
+          <mat-icon>save</mat-icon>&nbsp;save
+        </button>
+        <button mat-button mat-raised-button color="accent" class="actions-button">
+          <mat-icon>clear</mat-icon>&nbsp;clear
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</section>

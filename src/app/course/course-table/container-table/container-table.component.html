@@ -1,0 +1,65 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="position" sticky>
+      <th mat-header-cell *matHeaderCellDef> رقم </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+     <!-- course name Column -->
+     <ng-container matColumnDef="courseName">
+        <th mat-header-cell *matHeaderCellDef> اسم المادة </th>
+        <td mat-cell *matCellDef="let element"> {{element.subject.courseName}} </td>
+      </ng-container>
+       <!-- teacher Column -->
+    <ng-container matColumnDef="teacher">
+        <th mat-header-cell *matHeaderCellDef> المدرس </th>
+        <td mat-cell *matCellDef="let element"> {{element.subject.teacherName}} </td>
+      </ng-container>
+    <!-- register Column -->
+    <ng-container matColumnDef="registerDate">
+        <th mat-header-cell *matHeaderCellDef> تاريخ التسجيل </th>
+        <td mat-cell *matCellDef="let element"> {{element.subjectDetails.registerDate}} </td>
+      </ng-container>
+          <!-- notice date Column -->
+    <ng-container matColumnDef="notice">
+        <th mat-header-cell *matHeaderCellDef> ملاحظة </th>
+        <td mat-cell *matCellDef="let element"> {{element.notice}} </td>
+      </ng-container>
+        <!-- more date Column -->
+        <ng-container matColumnDef="more" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item [matMenuTriggerFor]="attend">
+                      <mat-icon>dialpad</mat-icon>
+                      <span>أوقات الدوام</span>
+                    </button>
+                   
+                    <button mat-menu-item>
+                      <mat-icon>notifications_off</mat-icon>
+                      <span>الدورات السابقة لنفس المادة</span>
+                    </button>
+                  </mat-menu>
+                  <!-- sub menu -->
+                  <mat-menu #attend="matMenu">
+                    <button mat-menu-item >
+                      <mat-icon>update</mat-icon>
+                      <span> تعديل</span>
+                    </button>
+                    <button mat-menu-item >
+                      <mat-icon>update</mat-icon>
+                      <span> عرض</span>
+                    </button>
+                  </mat-menu>
+            </td>
+          </ng-container>
+
+         
+          
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.position}"
+      (click)="highlight(row)"></tr>
+  </table>
+  

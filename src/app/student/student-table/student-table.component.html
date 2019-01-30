@@ -1,0 +1,21 @@
+<section class="main-section">
+    <mat-tab-group mat-stretch-tabs >   
+      <mat-tab *ngFor="let phase of phases">
+          <ng-template mat-tab-label >
+            <mat-list fxLayout>
+              <mat-list-item><mat-icon>face</mat-icon></mat-list-item>
+              <mat-list-item>{{phase.phaseName  }} </mat-list-item>
+              <mat-list-item> <span style="direction:rtl">{{phase.number}} طالب </span></mat-list-item>
+            </mat-list>
+            </ng-template>
+        <mat-tab-group color="primary" backgroundColor="primary" headerPosition="below">
+          <mat-tab *ngFor="let level of phase.levels" [label]="level.levelName"  >
+            <div class="div-tab">
+             <app-student-container-table [students]="level.students">
+             </app-student-container-table>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-tab>
+      </mat-tab-group>
+  </section>

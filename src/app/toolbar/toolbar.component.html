@@ -1,0 +1,61 @@
+<mat-toolbar color="primary">
+<!-- button for toggle sidenav -->
+  <div>
+    <button mat-icon-button (click)="onToggleSideNav()">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+  </div>
+
+  <div><a routerLink="/">LOGO</a></div>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+    <mat-list fxLayout fxLayoutGap="10px" class="navigation-items">
+ <!-- Courses -->
+ <mat-list-item>
+    <mat-menu #course="matMenu">
+      <button mat-menu-item (click)="onCourseTable()"><mat-icon >table_chart</mat-icon>(Admin) عرض الدورات - جداول </button>
+      <button mat-menu-item (click)="onCourseTable()"><mat-icon >table_chart</mat-icon>(User) عرض الدورات - جداول </button>
+      <button mat-menu-item (click)="onCourseEdit()"><mat-icon>add</mat-icon> اضافة دورة</button>
+      <button mat-menu-item> <mat-icon>delete</mat-icon>حذف دورة</button>
+    </mat-menu>
+
+    <a  [class.active]="isCourseActive" mat-button  [matMenuTriggerFor]="course" >
+      الدورات <mat-icon>move_to_inbox</mat-icon>
+    </a>
+  </mat-list-item>
+
+      <!-- Students -->
+      <mat-list-item>
+        <mat-menu #students="matMenu" >
+            <button mat-menu-item (click)="onStudentTableAdmin()"><mat-icon>table_chart</mat-icon> (Admin) عرض بيانات الطلاب - جداول</button>
+          <button mat-menu-item (click)="onStudentTable()"><mat-icon>table_chart</mat-icon> (User) عرض بيانات الطلاب - جداول </button>
+          <button mat-menu-item (click)="onAddStudent()"><mat-icon>add</mat-icon> اضافة طالب</button>
+          <button mat-menu-item >تسجيل حضور للطلاب</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item> <mat-icon>delete</mat-icon>حذف طالب</button>
+        </mat-menu>
+
+        <a  [class.active]="isStudentActive" mat-button [matMenuTriggerFor]="students">
+         الطلاب <mat-icon>how_to_reg</mat-icon>
+        </a>
+      </mat-list-item>
+
+      <!-- Setting  -->
+      <mat-list-item>
+        <mat-menu #rootMenu="matMenu">
+          <button mat-button-icon mat-menu-item><mat-icon >input</mat-icon> تسجيل دخول</button>
+          <button mat-menu-item><mat-icon>eject</mat-icon> تسجيل خروج</button>
+          <button mat-menu-item [matMenuTriggerFor]="setting">الاعدادات</button>
+        </mat-menu>
+
+        <mat-menu #setting="matMenu" >
+          <button mat-menu-item><mat-icon >people</mat-icon> المستخدمين</button>
+        </mat-menu>
+
+        <a mat-icon-button [matMenuTriggerFor]="rootMenu">
+          <mat-icon>more_vert</mat-icon>
+        </a>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</mat-toolbar>

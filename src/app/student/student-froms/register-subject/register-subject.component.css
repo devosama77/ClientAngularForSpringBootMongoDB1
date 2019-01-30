@@ -1,0 +1,95 @@
+.section-class{
+    width: 100%;
+    min-height: 100%;
+     height: 100%;
+    background-color: lightslategray
+  }
+
+  .list-item
+  {
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    /* align-items: flex-end; */
+    justify-content: flex-end;
+  }
+  
+   mat-form-field{text-align: right;}
+   mat-card-actions{direction: rtl}
+  
+
+ 
+  .card-class
+  {
+   margin-top: 1px;
+   width: 97%;
+   
+  }
+  .main-card-class
+  {
+    width:97%;
+  }
+  .subject-header-image {
+    background-image: url('/assets/img/subject2.jpg');
+    background-size: cover;
+  }
+  
+  .money-header-image {
+    background-image: url('/assets/img/money3.jpg');
+    background-size: cover;
+  }
+  .card-header
+  {
+    
+    padding: 20px;
+  }
+  .actions-button{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+  }
+
+  .div-table-container {
+  height: 400px;
+  width: 100%;
+  overflow: auto;
+}
+
+table {
+  width: 1400px;
+ 
+}
+
+td.mat-column-notice {
+  width: 20px;
+  padding-right: 8px;
+  
+}
+
+/* th.mat-column-subject, td.mat-column-subject {
+  padding-left: 8px;
+  
+} */
+
+  .mat-cell,.mat-header-cell {
+    text-align: center;
+   direction: rtl;
+   padding: 3px;
+   }
+
+.mat-table-sticky:first-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky:last-child {
+  border-left: 1px solid #e0e0e0;
+}
+
+
+.mat-chip {
+   
+    max-width: 200px;
+    width: 200px;
+  }
+  .div-mat-chip{
+padding: 20px;
+  }

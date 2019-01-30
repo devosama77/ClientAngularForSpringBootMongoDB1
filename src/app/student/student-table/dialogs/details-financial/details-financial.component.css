@@ -1,0 +1,21 @@
+mat-dialog-content
+.mat-dialog-actions{
+    width: 680px;
+}
+table{
+    width: 680px; 
+}
+tr.mat-footer-row {
+    font-weight: bold;
+  }
+
+ul,li{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.button-class
+{
+    margin-right: 40px;
+}

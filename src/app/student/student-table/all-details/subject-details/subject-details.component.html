@@ -1,0 +1,72 @@
+    <table mat-table [dataSource]="dataSource" *ngIf="!showAttendance">
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+
+        <!-- subject Column -->
+        <ng-container matColumnDef="subject">
+          <th mat-header-cell *matHeaderCellDef> اسم المادة </th>
+          <td mat-cell *matCellDef="let element">{{element.subject.courseName}}</td>
+        </ng-container>
+
+        <!-- teacher Column -->
+        <ng-container matColumnDef="teacher">
+          <th mat-header-cell *matHeaderCellDef> اسم المدرس </th>
+          <td mat-cell *matCellDef="let element">{{element.subject.teacherName}}</td>
+        </ng-container>
+        <!-- teacher Column -->
+        <ng-container matColumnDef="registerDate"> -->
+          <th mat-header-cell *matHeaderCellDef> تاريخ التسجيل </th>
+          <td mat-cell *matCellDef="let element"> {{element.subjectDetails.registerDate}}</td>
+        </ng-container>
+        <!-- teacher Column --> 
+        <ng-container matColumnDef="beginDate">
+          <th mat-header-cell *matHeaderCellDef> تاريخ البداية</th>
+          <td mat-cell *matCellDef="let element"> {{element.subjectDetails.beginDate}}</td>
+        </ng-container>
+        <!-- teacher Column -->
+        <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef> تاريخ الانتهاء </th>
+          <td mat-cell *matCellDef="let element"> {{element.subjectDetails.endDate}}</td>
+        </ng-container>
+
+
+        <!-- Notice Column -->
+        <ng-container matColumnDef="notice">
+          <th mat-header-cell *matHeaderCellDef> ملاحظات </th>
+          <td mat-cell *matCellDef="let element">{{element.notice}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="show">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element"> 
+       
+
+                <button mat-icon-button [matMenuTriggerFor]="show">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #show="matMenu">
+                    <button mat-menu-item (click)="onShowAttendance()">
+                      <mat-icon>update</mat-icon>
+                      <span> الحضور والغياب</span>
+                    </button>
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item>
+                      <mat-icon>add</mat-icon>
+                      <span>بيانات اضافية </span>
+                    </button>
+                  </mat-menu>
+
+            </td>
+          </ng-container>
+       
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+     <div *ngIf="showAttendance">
+        <app-show-attendace [regSubjects]="regSubjects"></app-show-attendace>
+     </div>
+      

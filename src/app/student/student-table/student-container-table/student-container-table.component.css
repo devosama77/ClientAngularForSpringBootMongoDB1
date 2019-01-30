@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+   
+  }
+    .highlight{
+      background: lightblue; /* green */
+    }
+   
+    
+    .mat-cell,.mat-header-cell {
+      text-align: center;
+     direction: rtl;
+    
+     }
+  
+  .mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+    width: 100px;
+  }
+  
+  .mat-table-sticky:last-child {
+    border-left: 1px solid #e0e0e0;
+  }
+  button{
+      text-align: end;
+  }
+    
+   

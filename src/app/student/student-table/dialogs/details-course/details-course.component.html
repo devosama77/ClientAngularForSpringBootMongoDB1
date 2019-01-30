@@ -1,0 +1,29 @@
+
+       <mat-card>
+         <mat-card-title>
+            <mat-grid-list cols="4" rowHeight="30px">
+                <mat-grid-tile  [colspan]=4 [rowspan]=1 >{{ getName()}}</mat-grid-tile>
+             </mat-grid-list>
+         </mat-card-title>
+         <mat-card-content>
+           <div *ngFor="let state of courses"> 
+              <mat-grid-list cols="4" rowHeight="30px" >
+                  <mat-grid-tile  [style.background]="state.color" [colspan]=3 [rowspan]=1 >اسم المدرس {{state.teacher}}</mat-grid-tile>
+                  <mat-grid-tile [style.background]="state.color" [colspan]=1 [rowspan]=1 >اسم الماده {{state.subject}}</mat-grid-tile>
+                  <mat-grid-tile [style.background]="state.color" [colspan]=1 [rowspan]=1 >تاريخ انتهاء الدوره {{state.endDate}}</mat-grid-tile>
+                  <mat-grid-tile [style.background]="state.color" [colspan]=3 [rowspan]=1 >ملاحظة {{state.notice}}</mat-grid-tile>
+                  <mat-grid-tile [style.background]="state.color" [colspan]=2 [rowspan]=1 >{{state.att}} =الحظور  </mat-grid-tile>
+                  <mat-grid-tile [style.background]="state.color" [colspan]=2 [rowspan]=1 > = الغياب {{state.abs}}</mat-grid-tile>
+              </mat-grid-list>   
+                <mat-divider></mat-divider>
+              </div>
+           </mat-card-content>
+      
+      
+       </mat-card>
+     
+
+    <mat-dialog-actions fxLayout fxLayoutAlign="end">
+    
+      <button class="button-class" mat-raised-button color="primary" [mat-dialog-close]="true">OK</button>
+    </mat-dialog-actions>

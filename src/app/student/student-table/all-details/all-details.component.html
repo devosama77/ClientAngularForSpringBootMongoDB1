@@ -1,0 +1,37 @@
+<section class="main-section">
+  <app-personal-details ></app-personal-details>
+  <!-- All details -->
+
+  <!--<mat-card  >-->
+      <!--<mat-card-header class="student-title" fxLayout fxLayoutAlign="end">-->
+        <!--<mat-card-title>{{details.birthday}}</mat-card-title>-->
+      <!--</mat-card-header>-->
+      <!--<mat-card-content>-->
+      <mat-tab-group mat-align-tabs="center">
+        
+        <mat-tab [label]="title">
+            <div class="div-tab">
+          <!-- Subject dtailes  -->
+              <app-subject-details (sendTitle)="onSendTitle($event)"></app-subject-details>
+            </div>
+        </mat-tab>
+      
+<!--  -->
+        <!-- <mat-tab label="الحضور">
+          <div  class="div-tab" >
+              <app-attendance-details></app-attendance-details>
+          </div>
+        </mat-tab> -->
+
+        <mat-tab label="المالية" >
+
+          <div class="div-tab">
+           <app-financial-details></app-financial-details>
+          </div>
+        </mat-tab>
+
+      </mat-tab-group>
+    <!--</mat-card-content>-->
+  <!--</mat-card>-->
+
+</section>

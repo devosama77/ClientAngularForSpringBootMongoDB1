@@ -1,0 +1,185 @@
+<section class="section-class"  >
+    <form fxLayout="column" fxLayoutAlign="start center"
+    [formGroup]="detailsGroup" (ngSubmit)="onSubmit()">
+  <mat-card class="main-card-class" fxFlex="95%" >
+      
+    <mat-card-header class="card-header" fxLayout fxLayoutAlign="center">
+        <div mat-card-avatar class="personal-header-image"></div>
+      <mat-card-title>اضافة طالب جديد
+       
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content fxLayout="column" fxFlexAlign="center"  >
+     
+      <mat-list  fxLayout fxLayoutAlign="end end">
+        <mat-list-item class="list-item">
+          <mat-form-field>
+            <input matInput placeholder="اسم العائلة " 
+            formControlName="lastName">
+            <mat-error *ngIf="getLastName.invalid">{{getErrorLastName()}}</mat-error>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item class="list-item" >
+          <mat-form-field>
+            <input matInput placeholder=" اسم الوالد"
+            formControlName="middleName">
+            <mat-error *ngIf="getFatherName.invalid">{{getErrorFatherName()}}</mat-error>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item class="list-item" >
+          <mat-form-field>
+            <input matInput placeholder="الاسم الاول"
+            formControlName="firstName">
+            <mat-error *ngIf="getFirstName.invalid">{{getErrorFirstName()}}</mat-error>
+          </mat-form-field>
+        </mat-list-item>
+      </mat-list>
+<!-- Second row list -->
+      <mat-list  fxLayout fxLayoutAlign="end end">
+        <mat-list-item class="list-item">
+                <mat-form-field >
+                  <input type="text" placeholder="اضف مهنة الوالد" 
+                  formControlName="fatherJob"
+                   matInput [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let job of jobs" [value]="job">
+                      {{job}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error *ngIf="getFatherJob.invalid">{{getErrorFatherJob()}}</mat-error>
+                </mat-form-field>
+        </mat-list-item>
+        <mat-list-item class="list-item">
+            <mat-form-field >
+                <input matInput [min]="minDate" [max]="maxDate" 
+                 formControlName="birthday"
+                [matDatepicker]="picker"
+                 placeholder="ادخل تاريخ الميلاد">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="getBirthDay.invalid">{{getErrorBirthDay()}}</mat-error>
+              </mat-form-field>
+        </mat-list-item>
+      
+
+        <mat-list-item class="list-item">
+               
+                <mat-radio-group class="gender-radio-group" formControlName="gender">
+                    <mat-radio-button class="gender-radio-button" checked value="1">ذكر</mat-radio-button>
+                    <mat-radio-button class="gender-radio-button"  value="2">انثى</mat-radio-button>
+                  </mat-radio-group>
+                  <p style="margin:5px;">: الجنس </p>  
+        </mat-list-item>
+      </mat-list>
+      <!--  -->
+      <mat-list fxLayout fxLayoutAlign="end end"  >
+          <mat-list-item class="list-item" >
+              <mat-form-field >
+                  <mat-select placeholder="المستوى الدراسي"
+                  formControlName="level" >
+                    <mat-option value="option">-اختار المستوى الدراسي-</mat-option>
+                    <mat-option *ngFor="let level of levels" value="{{level.n}}">{{level.level}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="getLevel.invalid">{{getErrorLevel()}}</mat-error>
+                </mat-form-field>
+          </mat-list-item>
+        <mat-list-item  class="list-item" >
+            <mat-form-field>
+                <mat-select placeholder="المرحة التلعيمه"
+                formControlName="phase"
+                >
+                 <mat-option> - اختار المرحلة التلعيميه -</mat-option>
+                  <mat-option value="1">الابتدائية</mat-option>
+                  <mat-option value="2">الاعدادية</mat-option>
+                  <mat-option value="3">الثانوية</mat-option>
+                </mat-select>
+                <mat-error *ngIf="getPhase.invalid">{{getErrorPhase()}}</mat-error>
+              </mat-form-field>
+        </mat-list-item>
+    
+      </mat-list>
+  
+    </mat-card-content>
+  </mat-card>
+
+  <mat-divider></mat-divider>
+  <!-- Contact Details .............................................................. .. -->
+
+  <mat-card class="card-class" fxFlex="90%" >
+      <mat-card-header class="card-header" fxLayout fxLayoutAlign="center">
+          <div mat-card-avatar class="contact-header-image"></div>
+        <mat-card-title>اضافة بيانات الاتصال</mat-card-title>
+      </mat-card-header>
+  
+      <mat-card-content fxLayout="column" fxFlexAlign="center center"  >
+   
+        <mat-list  fxLayout fxLayoutAlign="end end" formGroupName="contact">
+          
+            <mat-list-item class="list-item">
+                <mat-form-field >
+                  <input type="text" placeholder="اسم الشارع" 
+                   matInput formControlName="street" [matAutocomplete]="autoStreet">
+                  <mat-autocomplete #autoStreet="matAutocomplete">
+                    <mat-option *ngFor="let street of streets" [value]="street">
+                      {{street}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error *ngIf="getStreet.invalid">{{getErrorStreet()}}</mat-error>
+                </mat-form-field>
+        </mat-list-item>
+
+            <mat-list-item  class="list-item" >
+                <mat-form-field>
+                    <mat-select placeholder="المدينة"
+                    formControlName="city">
+                     <mat-option> - اختار المنطقة -</mat-option>
+                      <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="getCity.invalid">{{getErrorCity()}}</mat-error>
+                  </mat-form-field>
+            </mat-list-item>
+        </mat-list>
+  
+        <!--  -->
+        <mat-list fxLayout fxLayoutAlign="end end" formGroupName="contact" >
+          <mat-list-item class="list-item" >
+              <mat-form-field >
+                  <span matPrefix>059 &nbsp;</span>
+                  <input type="tel" matInput formControlName="phone2" maxlength="10" minlength="10"
+                  placeholder=" الجوال2 &nbsp; &nbsp;">
+                  <mat-icon matSuffix>mobile_friendly</mat-icon>
+                  <mat-error *ngIf="getPhone2.invalid">{{getErrorPhone2()}}</mat-error>
+                </mat-form-field>
+          </mat-list-item>
+          <mat-list-item  class="list-item" >
+            <mat-form-field>
+                <span matPrefix>059 &nbsp;</span>
+                <input type="tel" matInput formControlName="phone1" maxlength="10"
+                placeholder=" الجوال1 &nbsp; &nbsp;">
+                <mat-icon matSuffix>mobile_friendly</mat-icon>
+                <mat-error *ngIf="getPhone1.invalid">{{getErrorPhone1()}}</mat-error>
+              </mat-form-field>
+        </mat-list-item>
+          <mat-list-item class="list-item" >
+            <mat-form-field >
+                <input type="email" formControlName="email"
+                matInput placeholder=" الاميل &nbsp; &nbsp; ">
+                <mat-icon matSuffix>mail</mat-icon>
+                <mat-error *ngIf="getEmail.invalid">{{getErrorEmail()}}</mat-error>
+              </mat-form-field>
+        </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions style="padding:40px">
+        <button  color="primary" class="actions-button" [disabled]="!detailsGroup.valid"
+        type="submit"  mat-button mat-raised-button >
+          <mat-icon >save</mat-icon>&nbsp;save</button>
+          <button mat-button mat-raised-button color="accent" (click)="clearAllFields($event)"
+          class="actions-button" >
+           <mat-icon>clear</mat-icon>&nbsp;clear</button>  
+      </mat-card-actions>
+    
+    </mat-card>
+  </form >
+</section>

@@ -1,0 +1,57 @@
+<mat-toolbar>Menu</mat-toolbar>
+<mat-accordion >
+    <mat-expansion-panel 
+    (opened)="panelOpenState = false" (closed)="panelOpenState = true"
+    >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>how_to_reg</mat-icon>
+            </mat-panel-title>
+            <mat-panel-description>
+                     الطلاب
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+                <a class="a-lang" mat-list-item routerLink="/signup" (click)="onClose()">
+                     &nbsp;  &nbsp; <span class="nav-caption"> جداول </span>
+                    <mat-icon matListIcon>table_chart</mat-icon>
+                </a>
+                <mat-list-item class="a-lang">
+                    <button mat-icon-button (click)="onClose()">
+                        <mat-icon matListIcon>event_note</mat-icon>&nbsp;  &nbsp;
+                        <span class="nav-caption">اضافة و تعديل</span>                       
+                    </button>
+                </mat-list-item>
+            </mat-nav-list>
+    
+    </mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                   صفحة المدير
+                </mat-panel-title>
+                <mat-panel-description>
+                        الاعدادات              
+                              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-nav-list>
+                    <a class="a-lang" mat-list-item routerLink="/signup" (click)="onClose()">
+                      &nbsp;  &nbsp;<span class="nav-caption"> تسجيل مستخدم جديد </span>
+                        <mat-icon matListIcon>face</mat-icon>
+                    </a>
+                    <!-- <a mat-list-item  routerLink="/login" (click)="sidenav.close()">
+                                <mat-icon matListIcon>input</mat-icon> 
+                               <span class="nav-caption">login</span> </a> -->
+                    <mat-list-item class="a-lang">
+                        <button mat-icon-button (click)="onClose()">
+                            <mat-icon>eject</mat-icon>&nbsp;  &nbsp;
+                            <span class="nav-caption">تسجيل خروج</span>
+                        </button>
+                    </mat-list-item>
+                </mat-nav-list>
+        
+        </mat-expansion-panel>
+    </mat-accordion>

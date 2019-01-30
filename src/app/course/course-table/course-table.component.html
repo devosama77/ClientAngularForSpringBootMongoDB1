@@ -1,0 +1,27 @@
+<section class="main-section">
+  <mat-tab-group mat-stretch-tabs >   
+    <mat-tab *ngFor="let phase of regs">
+        <ng-template mat-tab-label >
+          <mat-list fxLayout>
+            <mat-list-item><mat-icon>face</mat-icon></mat-list-item>
+            <mat-list-item>{{phase.phaseName  }} </mat-list-item>
+            <mat-list-item><span>مادة &nbsp;</span> {{phase.number}}</mat-list-item>
+          </mat-list>
+          </ng-template>
+      <mat-tab-group color="primary" backgroundColor="accent" headerPosition="below">
+        <mat-tab *ngFor="let level of phase.levels"  >
+            <ng-template mat-tab-label >
+                <mat-list fxLayout>
+                  <mat-list-item>{{level.levelName}} </mat-list-item>
+                  <mat-list-item><span>مادة &nbsp;</span> {{level.number}}</mat-list-item>
+                </mat-list>
+                </ng-template>
+          <div class="div-tab">
+           <app-container-table [reg]="level.regs" ></app-container-table>
+           
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-tab>
+    </mat-tab-group>
+</section>

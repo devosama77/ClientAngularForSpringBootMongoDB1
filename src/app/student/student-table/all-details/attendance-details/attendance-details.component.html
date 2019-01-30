@@ -1,0 +1,98 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="subjectFormGroup">
+      <form [formGroup]="subjectFormGroup">
+        <ng-template matStepLabel>Fill out the subject and year</ng-template>
+        <div fxLayout="column" fxFlex="20%">
+            <mat-form-field fxFlex>
+                <mat-select placeholder="ادخل السنة" 
+                formControlName="yearCtrl" required>
+                  <mat-option>None</mat-option>
+                  <mat-option value="subject1">2019</mat-option>
+                  <mat-option value="subject1">2018</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                  <mat-select placeholder="ادخل اسم المادة" 
+                  formControlName="subjectCtrl" required>
+                    <mat-option>None</mat-option>
+                    <mat-option value="subject1">رياضايات</mat-option>
+                    <mat-option value="subject1">لغة انجليزيه</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="regFormGroup">
+      <form [formGroup]="regFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <div fxLayout="column" fxFlex="20%">
+        <mat-form-field fxFlex>
+            <mat-select placeholder="الماده المسجله بتاريخ " 
+            formControlName="regCtrl" required>
+              <mat-option>None</mat-option>
+              <mat-option value="subject1">اسم الماده والتاريخ 1</mat-option>
+              <mat-option value="subject1">اسم المادهوالتاريخ  1</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+
+
+
+      <!-- for every time in year -->
+      <mat-accordion style="direction:rtl">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              الحظور والغياب للمادة المسجله بشهر
+            </mat-panel-title>
+            <mat-panel-description>
+              ملاحظة
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <h3>عدد ايام الحظور : عدد ايام الغياب</h3>
+          <table mat-table [dataSource]="dataSource2">
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+
+            <!-- date Column -->
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef> تاريخ الحظور </th>
+              <td mat-cell *matCellDef="let element"> تاريخ 1 </td>
+            </ng-container>
+            <!-- time Column -->
+            <ng-container matColumnDef="time">
+              <th mat-header-cell *matHeaderCellDef> وقت الحظور</th>
+              <td mat-cell *matCellDef="let element"> حظور 1 </td>
+            </ng-container>
+            <!-- notice Column -->
+            <ng-container matColumnDef="notice">
+              <th mat-header-cell *matHeaderCellDef>ملاحظة </th>
+              <td mat-cell *matCellDef="let element"> ملاحظة 1 </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-step>
+  </mat-horizontal-stepper>
+

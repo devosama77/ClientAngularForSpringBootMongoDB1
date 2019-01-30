@@ -1,0 +1,10 @@
+table {
+    width: 100%;
+    max-height: 450px;
+    height: 250px;
+  }
+  .mat-cell,.mat-header-cell {
+    text-align: center;
+   direction: rtl;
+  
+   }

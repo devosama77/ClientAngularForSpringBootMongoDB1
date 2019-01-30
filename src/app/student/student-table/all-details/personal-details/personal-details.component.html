@@ -1,0 +1,49 @@
+<section>
+<mat-expansion-panel >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        البيانات الشخصية ومعلومات الاتصال
+      </mat-panel-title>
+      <mat-panel-description>
+        ... من أجل اظهار كافة البيانات الشخصية والاتصال اضغط هنا
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div fxLayout>
+      <mat-card class="details-card">
+        <mat-card-header  fxLayout fxLayoutAlign="end">
+          <mat-card-title class="student-title">اسم الطالب : {{details.firstName}}&nbsp;
+            {{details.middleName}}&nbsp;{{details.lastName}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list fxLayout fxLatoutAlign="end" class="text-arabic">
+            <mat-list-item >تاريخ الميلاد : &nbsp;{{details.birthday}}</mat-list-item>
+            <mat-list-item  fxLatoutAlign="end">الصف : &nbsp; {{details.level}}&nbsp;{{details.phase}}
+            </mat-list-item>
+          </mat-list>
+    <mat-list class="text-arabic">
+      <mat-list-item fxLayout fxLatoutAlign="end">
+          وظيفة الاب : &nbsp;{{details.fatherJob}}
+      </mat-list-item>
+    </mat-list>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="contact-card">
+        <mat-card-header  fxLayout fxLayoutAlign="end">
+          <mat-card-title class="student-title">معلومات الاتصال : </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list fxLayout class="text-arabic">
+            <mat-list-item>العنوان : {{contact.street}} / {{contact.city}}</mat-list-item>
+            
+          </mat-list>
+          <mat-list fxLayout class="text-arabic">
+            <mat-list-item> رقم الجوال 1 : {{contact.phone1}} </mat-list-item>
+            <mat-list-item>{{contact.phone2}}  </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-expansion-panel>
+</section>

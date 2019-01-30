@@ -1,0 +1,69 @@
+<div  fxLayout fxLayoutAlign="center" style="background-color:lightblue">
+    <!-- Print Button -->
+    <mat-menu #printMenu="matMenu" xPosition="after">
+      <button mat-menu-item>PDF</button>
+      <button mat-menu-item>Excel</button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="printMenu">
+      طباعة<mat-icon>file_copy</mat-icon>
+    </button>
+  </div>
+
+  <!-- Table Financial -->
+  <table mat-table [dataSource]="dataSource">
+    <!-- Fees row -->
+    <ng-container matColumnDef="fees">
+      <th mat-header-cell *matHeaderCellDef>
+        الرسوم
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-list fxLayout class="mat-list-features">
+            <mat-list-item>{{element.registerFinancial.fees}}</mat-list-item>
+           <mat-list-item>{{element.registerFinancial.feesDate}}</mat-list-item>
+        </mat-list>
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <mat-list class="mat-list-features">
+            <mat-list-item >صافي الرسوم = {{totalFees}}</mat-list-item>
+          <mat-list-item></mat-list-item>
+        </mat-list>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="payments">
+      <th mat-header-cell *matHeaderCellDef> الدفعات</th>
+      <td mat-cell *matCellDef="let element" >
+        <mat-list fxLayout *ngFor="let payment of element.registerFinancial.payments"
+        class="mat-list-features"
+        >
+           <mat-list-item >{{payment.payments}} </mat-list-item>
+          <mat-list-item>{{payment.datePayments}}</mat-list-item>
+        </mat-list>
+        <mat-list fxLayout>
+          <mat-list-item>مجموع الدفعات = {{element.registerFinancial.payments.total}}</mat-list-item>
+          <mat-list-item></mat-list-item>
+        </mat-list>
+
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <mat-list fxLayout class="mat-list-features">
+          <mat-list-item>مجموع الدفعات = {{totalPays}}</mat-list-item>
+          <mat-list-item>
+              صافي المبلغ المطلوب للدفع = {{total}}
+            </mat-list-item>
+        </mat-list>
+      </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <!-- <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
